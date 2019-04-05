@@ -47,7 +47,7 @@ An Example Fact:
 ```
 
 
-## [Link to Commented First Draft Schema](db.js) 
+## [Link to Commented First Draft Schema](https://github.com/nyu-csci-ua-0480-008-spring-2019/owura82-final-project/blob/0ea22cf8fe978f4bc417af2e109a2609852920d9/src/db.js#L1) 
 
 (___TODO__: create a first draft of your Schemas in db.js and link to it_)
 
