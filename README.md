@@ -99,9 +99,9 @@ Sitemap for MCAT study site
 
 
 * (6 points) vue.js
-    * used vue.js as the frontend framework; it's a challenging library to learn, so I've assigned it 5 points
+    * Vue is totally knew to me and its because of this unfamiliarity that I give it six points. 
 * (2 points) Bootstrap
-     *Using bootstrap to make site more responsive 
+    * Another unfamiliar framework that I look forward to learning about. 
 
 
 
