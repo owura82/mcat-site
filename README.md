@@ -106,7 +106,7 @@ Sitemap for MCAT study site
 
 
 
-## [Link to Initial Main Project File](app.js) 
+## [Link to Initial Main Project File](https://github.com/nyu-csci-ua-0480-008-spring-2019/owura82-final-project/blob/0ea22cf8fe978f4bc417af2e109a2609852920d9/src/app.js#L1) 
 
 (___TODO__: create a skeleton Express application with a package.json, app.js, views folder, etc. ... and link to your initial app.js_)
 
