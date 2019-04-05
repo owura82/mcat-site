@@ -102,6 +102,7 @@ Sitemap for MCAT study site
     * Vue is totally knew to me and its because of this unfamiliarity that I give it six points. 
 * (2 points) Bootstrap
     * Another unfamiliar framework that I look forward to learning about. 
+* Total points - 8
 
 
 
