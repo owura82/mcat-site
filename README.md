@@ -1,12 +1,8 @@
 The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines.
 
-(___TODO__: your project name_)
-
 # MCAT STUDY SITE / QUICK FACTS
 
 ## Overview
-
-(___TODO__: a brief one or two paragraph, high-level description of your project_)
 
 Life as a premed student is interesting. Other premed students may choose to describe this life as a stressful, torturous, stress inducing, anxiety creating lifestyle that leads to nothing but existential crises and constantly questioning your life choices. That may all be true but I feel "interesting" just has a better ring to it.  
 
@@ -15,14 +11,11 @@ This web app is simply designed to help students attack that formidable test - t
 
 ## Data Model
 
-(___TODO__: a description of your application's data and their relationships to each other_) 
-
 The application will store Subjects, Facts and possibly accounts.
 
 * Subjects will be the various subjects for the exam. Each subject will have an array of facts
 * Facts are the infomration that users store on the site. 
-
-(___TODO__: sample documents_)
+* Accounts, if used, will store usernames and passwords and the users subjects and facts.
 
 An Example Subject:
 
@@ -49,11 +42,7 @@ An Example Fact:
 
 ## [Link to Commented First Draft Schema](https://github.com/nyu-csci-ua-0480-008-spring-2019/owura82-final-project/blob/0ea22cf8fe978f4bc417af2e109a2609852920d9/src/db.js#L1) 
 
-(___TODO__: create a first draft of your Schemas in db.js and link to it_)
-
 ## Wireframes
-
-(___TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc._)
 
 /subject (:slug) - page page that displays all facts for a subject
 
@@ -72,8 +61,6 @@ An Example Fact:
 ![newfact](documentation/IMG_0089.JPG)
 
 ## Site map
-
-(___TODO__: draw out a site map that shows how pages are related to each other_)
 
 Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia/commons/2/20/Sitemap_google.jpg), but you can create one without the screenshots, drop shadows, etc. ... just names of pages and where they flow to.
 
@@ -95,8 +82,6 @@ Sitemap for MCAT study site
 
 ## Research Topics
 
-(___TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed_)
-
 
 * (6 points) vue.js
     * Vue is totally knew to me and its because of this unfamiliarity that I give it six points. 
@@ -108,7 +93,6 @@ Sitemap for MCAT study site
 
 ## [Link to Initial Main Project File](https://github.com/nyu-csci-ua-0480-008-spring-2019/owura82-final-project/blob/0ea22cf8fe978f4bc417af2e109a2609852920d9/src/app.js#L1) 
 
-(___TODO__: create a skeleton Express application with a package.json, app.js, views folder, etc. ... and link to your initial app.js_) 
 
 ## Annotations / References Used
 
