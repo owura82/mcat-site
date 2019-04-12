@@ -1,0 +1,14 @@
+<form action="" method='POST'>
+    <p>**Note: This is a test form. Not related to real final project</p>
+    <h4>Game of Thrones Characters</h4>
+    Character: <input type="text" name="character">
+    Are they dead: <input type="text" name="dead">
+    <input type="submit" value="Add">
+</form>
+
+<br>
+<ul>
+    {{#each people}}
+    <li>{{this.name}} - {{this.state}}</li>
+    {{/each}}
+</ul>

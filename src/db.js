@@ -1,6 +1,5 @@
 // db.js
 const mongoose = require('mongoose');
-const URLSlugs = require('mongoose-url-slugs');
 
 // define the data in our collection
 const Fact = new mongoose.Schema({
@@ -15,11 +14,17 @@ const Subject = new mongoose.Schema({
     facts: [Fact]
 });
 
+const character = new mongoose.Schema({
+    name: String, 
+    state: String
+});
 
 // "register" it so that mongoose knows about it
 mongoose.model('Fact', Fact);
 
 mongoose.model('Subject', Subject);
+
+mongoose.model('Character', character);
 
 
 // is the environment variable, NODE_ENV, set to PRODUCTION? 
