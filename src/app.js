@@ -18,3 +18,5 @@ app.set('view engine', 'hbs');
 
 //for being able to access the body and query strings of requests
 app.use(express.urlencoded({ extended: false }));
+
+app.listen(process.env.PORT || 3000);
