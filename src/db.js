@@ -1,6 +1,8 @@
 // db.js
 const mongoose = require('mongoose');
 
+const URLSlugs = require('mongoose-url-slugs');
+
 // define the data in our collection
 const Fact = new mongoose.Schema({
     info: String,
@@ -19,13 +21,23 @@ const character = new mongoose.Schema({
     state: String
 });
 
+const User = new mongoose.Schema({
+    username: String, 
+    password: String, 
+    subjects: [Subject]
+});
+
 // "register" it so that mongoose knows about it
 mongoose.model('Fact', Fact);
 
 mongoose.model('Subject', Subject);
 
+//slug for subjects
+Book.plugin(URLSlugs('name'));
+
 mongoose.model('Character', character);
 
+mongoose.model("User", User);
 
 // is the environment variable, NODE_ENV, set to PRODUCTION? 
 let dbconf;
@@ -34,6 +46,7 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
  // use blocking file io to do this...
  const fs = require('fs');
  const path = require('path');
+ 
  const fn = path.join(__dirname, 'config.json');
  const data = fs.readFileSync(fn);
 
