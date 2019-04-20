@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	    <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/style.css" type="text/css"/>
+        <title>MCAT</title>
+	</head>
+	<body>
+        <div class='top-bar'> 
+        </div>
+        
+        <div class='nav-bar'>
+         
+        </div>
+
+        <div class='main-section'>
+            <main class='to-center'>
+              <!--Bigger section block that has a quick message and a couple of links to create an account or explore subjects-->
+              <h3>Welcome to the MCAT Study Site - The most visited site by all students who ACE the MCAT</h3>
+              <p>conincidence? I think not</p>
+
+              <br>
+              <br>
+
+              <h4>Use the links below to create an account to get full access to the site or browse our already added subjects.</h4>
+
+              <span>
+              <button type='button' id='create-account'>Create Account</button> 
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <button type='button'><a href="">Explore Subjects</a></button> 
+            </span>
+
+            </main>
+        </div>
+
+        <!--Modal for creating an account-->
+        <div id="create-acc-modal" class="modal">
+				<div class="modal-content">
+                    <h4 class='to-center'>Create Account</h4><br>
+					<form action="/new-account" method="POST">
+                        <!--Form should make a http request to server which sends back a new page-->
+                        Name: <input type="text" name="name"><br><br>
+                        username: <input type="text" name="username"><br><br>
+                        password: <input type="text" name="password" id=""><br><br>
+                        <input type="submit" id='create-account' value="Create Account">&nbsp;&nbsp;&nbsp;
+                        <input type="button" id='cancel-modal' value="Cancel"><br><br>
+                    </form>
+				</div>
+		</div>
+
+        <div class='other-links'>
+            *Insert other medical school and MCAT related links*
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="js/index.js"></script>
+    </body>
+</html>

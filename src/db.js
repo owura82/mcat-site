@@ -22,6 +22,7 @@ const character = new mongoose.Schema({
 });
 
 const User = new mongoose.Schema({
+    Name: String,
     username: String, 
     password: String, 
     subjects: [Subject]
@@ -33,7 +34,7 @@ mongoose.model('Fact', Fact);
 mongoose.model('Subject', Subject);
 
 //slug for subjects
-Book.plugin(URLSlugs('name'));
+Subject.plugin(URLSlugs('name'));
 
 mongoose.model('Character', character);
 

@@ -1,0 +1,52 @@
+.modal{
+    display: none;
+    position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+}
+
+.modal-content{
+    width: 60%;
+    position: fixed;
+    top: 20%;
+    left: 20%;
+    padding: 10px;
+}
+
+.top-bar{
+    width: 100%;
+    background-color: lemonchiffon;
+    height: 30px;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+
+
+.nav-bar{
+    text-align: center;
+    background-color: lemonchiffon;
+}
+
+.main-section{
+    height: 400px;
+    background-color: burlywood;
+
+}
+
+.to-center{
+    text-align: center;
+}
+
+.nav-button{
+    margin: 4px;
+}
+
+body{
+    background-color: antiquewhite;
+}
