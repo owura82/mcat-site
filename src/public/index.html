@@ -10,10 +10,6 @@
 	<body>
         <div class='top-bar'> 
         </div>
-        
-        <div class='nav-bar'>
-         
-        </div>
 
         <div class='main-section'>
             <main class='to-center'>
@@ -24,31 +20,14 @@
               <br>
               <br>
 
-              <h4>Use the links below to create an account to get full access to the site or browse our already added subjects.</h4>
+              <h4>Use the link below to explore our subjects.</h4>
 
               <span>
-              <button type='button' id='create-account'>Create Account</button> 
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <button type='button'><a href="">Explore Subjects</a></button> 
+              <button type='button'><a href="/subjects">Explore Subjects</a></button> 
             </span>
 
             </main>
         </div>
-
-        <!--Modal for creating an account-->
-        <div id="create-acc-modal" class="modal">
-				<div class="modal-content">
-                    <h4 class='to-center'>Create Account</h4><br>
-					<form action="/new-account" method="POST">
-                        <!--Form should make a http request to server which sends back a new page-->
-                        Name: <input type="text" name="name"><br><br>
-                        username: <input type="text" name="username"><br><br>
-                        password: <input type="text" name="password" id=""><br><br>
-                        <input type="submit" id='create-account' value="Create Account">&nbsp;&nbsp;&nbsp;
-                        <input type="button" id='cancel-modal' value="Cancel"><br><br>
-                    </form>
-				</div>
-		</div>
 
         <div class='other-links'>
             *Insert other medical school and MCAT related links*

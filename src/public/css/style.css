@@ -4,10 +4,10 @@
 	z-index: 1;
 	left: 0;
 	top: 0;
-	width: 100%; /* Full width */
-	height: 100%; /* Full height */
-	overflow: auto; /* Enable scroll if needed */
-	background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+	width: 100%; 
+	height: 100%; 
+	overflow: auto; 
+	background-color: rgba(0,0,0,0.7); 
 }
 
 .modal-content{
@@ -18,20 +18,15 @@
     padding: 10px;
 }
 
+
 .top-bar{
     width: 100%;
     background-color: lemonchiffon;
-    height: 30px;
+    height: 50px;
     text-align: center;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-
-
-.nav-bar{
-    text-align: center;
-    background-color: lemonchiffon;
-}
 
 .main-section{
     height: 400px;
@@ -43,10 +38,11 @@
     text-align: center;
 }
 
-.nav-button{
-    margin: 4px;
-}
-
 body{
     background-color: antiquewhite;
+}
+
+#add-subject{
+    position: fixed;
+    top: 10px;
 }

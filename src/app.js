@@ -38,32 +38,103 @@ app.use(express.static(publicPath));
 
 
 
-app.get('/', function (req, res){
-    //homepage
-    //tells the user about the site 
-    //link to page that allows them to create an account 
-    //link to page that allows them to see some site generated subjects and associated facts 
+app.get('/subjects', function(eq, res){
+
+    res.render('subjects');
+
+
+});
+
+app.get('/facts', function(req, res){
+ 
+    res.render('facts');
+
+});
+
+
+app.post('/addfact',function(req, res){
+    //add a new fact
+    const fact = sanitize(req.body.fact);
+    if(fact===''){
+        res.json({error:"Fact cannot be empty"})
+        return;
+    }
+
+    Fact.find({info:fact}, function(err, found){
+        if(found.length !== 0){
+            res.json({error:"Facts already exists"})
+        return;
+        }
+
+    });
+
+    const newFact = new Fact({
+        info: fact
+    });
+
+    newFact.save(function(err, saved){
+
+        if(err){
+            console.log('unable to save fact');
+            return
+        }
+
+        res.json(newFact);
+
+    });
+
+}); 
+
+app.post('/addsubject', function(req, res){
+    //process request to add new subject 
     
+    const sub = sanitize(req.body.subject);
+    if(sub===''){
+        res.json({error:"Subject cannot be empty"})
+        return;
+    }
+
+    Subject.find({name:sub}, function(err, found){
+        if(found.length !== 0){
+            res.json({error:"Subject already exists"})
+        return;
+        }
+
+    });
+
+    const newSub = new Subject({
+        name: sub, 
+        facts:[]
+    })
+
+    newSub.save(function(err, saved){
+
+        if(err){
+            console.log('unable to save subejct');
+            return
+        }
+
+        res.json(newSub);
+
+    });
+    
+
+});
+
+app.get('/subjects/:subj', function(req, res){
+    //sends back all a subjects facts - a simple list for now
+
 });
 
 
-app.post('/sign-in', function(req, res){
-    //forms that handles a user signinn into their account
 
 
-});
-
-
-app.get('/sign-in', function(req, res){
-    res.render('sign-in');
-});
-
-
+/*
 app.post('/new-account', function(req, res){
     //process user request to create a new account 
     //if anything is invalid, redisplay the create account form with error message 
     //else redirect to the sign up page where the user can use new credentials to log in 
-    console.log(req.sessionID);
+    console.log(req.session.id);
 
     //sanitize request
     const name = sanitize(req.body.name);
@@ -107,33 +178,7 @@ app.post('/new-account', function(req, res){
 
 
 });
-
-
-app.get('/addsubject',function(req, res){
-    //display the form that allows the user to add a new subject they are interested in 
-
-}); 
-
-app.post('/addsubject', function(req, res){
-    //process request to add new subject 
-    //redirect back to user home page with a list of subjects 
-
-});
-
-
-app.get('/home', function(req, res){
-    //the home page that user with accounts can see
-    //shows the list of subjects that are links to the subjects' facts
-
-});
-
-
-app.get('/home/:subject', function(req, res){
-    //list the subjects facts 
-    //add link to go back to subject list 
-
-});
-
+*/
 
 
 

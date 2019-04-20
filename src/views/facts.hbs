@@ -1,0 +1,31 @@
+<div class='top-bar'> 
+    <button id='add-fact' >Add Fact</button>
+</div>
+
+<div class='main-section'>
+    <main class='to-center'>
+        <div class="fact-list">
+            <ul>
+                {{#each facts}}
+                <li>{{this.info}}</li>
+                {{/each}}
+            </ul>
+        </div>
+    
+    </main>
+</div>
+
+<div class="modal">
+    <div class="modal-content">
+        <h4>Add a  Fact</h4><br>
+        Fact: <input type="text" id="new-fact" value=""><br><br>
+        <span>
+            <input type="button" id="create-fact" value="Add">&nbsp;&nbsp;&nbsp;
+            <input type="button" id="cancel" value="Cancel">
+        </span>
+    </div>
+</div>
+
+<div class='other-links'>
+    *Insert other medical school and MCAT related links*
+</div>
