@@ -80,7 +80,7 @@ Sitemap for MCAT study site
 
 
 * (6 points) jquery
-    * jquert is totally knew to me and its because of this unfamiliarity that I give it six points. 
+    * jquery is totally knew to me and its because of this unfamiliarity that I give it six points. 
 * (2 points) Bootstrap
     * Another unfamiliar framework that I look forward to learning about. 
 * Total points - 8
