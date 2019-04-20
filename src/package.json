@@ -13,7 +13,8 @@
     "bootstrap": "^4.3.1",
     "express": "^4.16.4",
     "express-session": "^1.16.1",
-    "handlebars": "^4.1.1",
+    "handlebars": "^4.1.2",
+    "jquery": "^3.4.0",
     "mongo-sanitize": "^1.0.1",
     "mongoose": "^5.4.22",
     "mongoose-url-slugs": "^1.0.2"

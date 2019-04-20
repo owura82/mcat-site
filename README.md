@@ -70,19 +70,17 @@ Sitemap for MCAT study site
 
 ## User Stories or Use Cases
 
-1. as non-registered user, I can register a new account with the site
-2. as a user, I can log in to the site
-3. as a user, I can create add to the subject list
-4. as a user or non registered user, I can view all the subjects
-5. as a non registered user, I can only view the facts added by the site. I cannot add my own 
-6. as a user, I can view both the facts added by the site and what I added myself.
-7. as a user I can add add my own facts. 
+
+1. all visitors to the site an view subjects and facts
+2. users can add subjects - provided the subject does not exist already
+3. users can add facts
+4. facts are displayed in order of some kind of rating system - the more users rate a fact the higher it is displayed on the fact list
 
 ## Research Topics
 
 
-* (6 points) vue.js
-    * Vue is totally knew to me and its because of this unfamiliarity that I give it six points. 
+* (6 points) jquery
+    * jquert is totally knew to me and its because of this unfamiliarity that I give it six points. 
 * (2 points) Bootstrap
     * Another unfamiliar framework that I look forward to learning about. 
 * Total points - 8

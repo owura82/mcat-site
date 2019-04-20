@@ -1,3 +1,4 @@
+
 function addSubject(evt){
     //xhr request to display the add subject form 
     const req = new XMLHttpRequest();
@@ -11,7 +12,19 @@ function addSubject(evt){
     req.addEventListener('load', function(){
         if(req.status>=200 && req.status<400){
             //add new subject to page 
-            //use Vue
+            const response = JSON.parse(req.responseText);
+
+            const li = document.createElement('li');
+            const link = document.createElement('a');
+            link.textContent = response.name;
+            link.href = '';
+
+            li.appendChild(link);
+
+            $('#subject-list').append(li);
+            
+
+
         }
 
         else{
@@ -43,9 +56,15 @@ function addFact(evt){
 
     req.addEventListener('load', function(){
         if(req.status>=200 && req.status<400){
-            //add new subject to page 
-            //use Vue
+            //add new fact to page 
+            const response = JSON.parse(req.responseText);
 
+            const li = document.createElement('li');
+            li.textContent = response.info;
+
+            $('#fact-list').append(li);
+
+            
         }
 
         else{
@@ -102,4 +121,6 @@ function main(){
 
 }
 
-document.addEventListener("DOMContentLoaded", main);
+//document.addEventListener("DOMContentLoaded", main);
+
+$(document).ready(main);

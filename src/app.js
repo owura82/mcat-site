@@ -40,14 +40,27 @@ app.use(express.static(publicPath));
 
 app.get('/subjects', function(eq, res){
 
-    res.render('subjects');
+    Subject.find(function(err, found){
+        if(err){
+            console.log("Could not find subjects");
+            return;
+        }
 
+        res.render('subjects', {subjects:found});
+    });
 
 });
 
 app.get('/facts', function(req, res){
  
-    res.render('facts');
+    Fact.find(function(err, found){
+        if(err){
+            console.log("Could not find subjects");
+            return;
+        }
+
+        res.render('facts', {facts:found});
+    });
 
 });
 
@@ -62,7 +75,7 @@ app.post('/addfact',function(req, res){
 
     Fact.find({info:fact}, function(err, found){
         if(found.length !== 0){
-            res.json({error:"Facts already exists"})
+            res.json({error:"Fact already exists"})
         return;
         }
 
@@ -79,6 +92,7 @@ app.post('/addfact',function(req, res){
             return
         }
 
+        console.log(newFact);
         res.json(newFact);
 
     });
@@ -107,15 +121,14 @@ app.post('/addsubject', function(req, res){
         facts:[]
     })
 
-    newSub.save(function(err, saved){
+    newSub.save(function(err){
 
         if(err){
             console.log('unable to save subejct');
-            return
+            return;
         }
-
         res.json(newSub);
-
+    
     });
     
 
