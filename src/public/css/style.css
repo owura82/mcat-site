@@ -19,30 +19,93 @@
 }
 
 
+#user-list{
+    display: none;
+}
+
+
 .top-bar{
     width: 100%;
     background-color: lemonchiffon;
     height: 50px;
     text-align: center;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 
 .main-section{
-    height: 400px;
+    
     background-color: burlywood;
+    position: relative;
 
 }
 
 .to-center{
-    text-align: center;
+   text-align: center;
 }
 
 body{
     background-color: antiquewhite;
 }
 
-#add-subject{
-    position: fixed;
+ul{
+    list-style: none;
+    position: relative;
+    left: -20px;
+}
+
+.subject-box{
+    border: solid 1px black;
+    margin: 2px;
+    border-radius: 5px;
+   height: 70px;
+   font-size: 35px;
+}
+
+.fact-box{
+    border: solid 1px black;
+    margin: 2px;
+    border-radius: 3px;
+    padding: 3px;
+    font-size: 20px;
+}
+
+
+.subject-box:hover{
+    background-color: floralwhite;
+    height: 90px;
+    font-size: 45px;
+    color: crimson;
+}
+
+.magnify:hover{
+    width: 190px;
+    height: 30px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+/*
+#add-subject, #add-fact{
+    position: absolute;
+    bottom: 10px;
+    left: 600px;
+  
+}
+*/
+.back-subj{
+    color: white;
+}
+
+.back-subj:hover{
+    color:yellow;
+
+}
+
+.sub-link:hover{
+    text-decoration: none;
+}
+.move-down{
+    position: relative;
     top: 10px;
 }

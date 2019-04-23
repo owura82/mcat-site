@@ -5,9 +5,9 @@ const mongoose = require('mongoose');
 const sanitize =  require('mongo-sanitize');
 const session = require('express-session');
 
-const Char = mongoose.model("Character");
+//const Char = mongoose.model("Character");
 
-const User = mongoose.model("User");
+
 const Subject = mongoose.model("Subject");
 const Fact = mongoose.model("Fact");
 
@@ -85,15 +85,14 @@ app.post('/addfact',function(req, res){
         info: fact
     });
 
-    newFact.save(function(err, saved){
+    //need to add the new fact to its associated subject
+    Subject.findOneAndUpdate({slug:req.body.subject}, {$push: {facts: newFact}}, function(err, doc, resp){
 
-        if(err){
-            console.log('unable to save fact');
-            return
+        if(err){console.log("Could not add fact to subject")}
+
+        else{
+            res.json(newFact);
         }
-
-        console.log(newFact);
-        res.json(newFact);
 
     });
 
@@ -118,7 +117,9 @@ app.post('/addsubject', function(req, res){
 
     const newSub = new Subject({
         name: sub, 
-        facts:[]
+        facts:[],
+        site: false,
+        user: true
     })
 
     newSub.save(function(err){
@@ -134,8 +135,25 @@ app.post('/addsubject', function(req, res){
 
 });
 
-app.get('/subjects/:subj', function(req, res){
-    //sends back all a subjects facts - a simple list for now
+app.get('/:subj', function(req, res){
+    //display facts for subjects
+    const cleanSlug = sanitize(req.params.subj);
+    Subject.find({slug: cleanSlug}, function(err, found){
+        if(err){
+            console.log('could not find subject using slug ');
+            return;
+        }
+
+        const facts = found[0].facts;
+        const barsObject = {
+            facts: facts,
+            subject: cleanSlug,
+            subjectname: found[0].name
+        }
+
+        res.render('facts', barsObject);
+    });
+
 
 });
 

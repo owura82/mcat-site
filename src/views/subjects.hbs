@@ -1,19 +1,50 @@
 <div class='top-bar'> 
-    <button id='add-subject' >Add Subject</button>
+    <button class="btn-primary move-down" id="show-site-list">Site Subjects</button>
+    <button class="btn-primary move-down" id="show-user-list">User Subjects</button>
+    <a class='back-subj' href="/"><button class="btn-primary move-down">Home</button></a>
 </div>
 
 <div class='main-section'>
-    <main class='to-center'>
-        <div class="subject-list">
-            <ul id='subject-list'>
+    <div id='site-list'>
+        <main class='to-center'>
+            <br>
+            <ul id='site-subject-list'>
                 {{#each subjects}}
-                <li><a href="">{{this.name}}</a></li>
+                <!--Only display site subjects-->
+                    {{#if this.site}}
+                      <!--  <div class="subject-box">-->
+                            <a class="sub-link" href="/{{this.slug}}"><div class="subject-box"><li>{{this.name}}</li></div></a>
+                        <!--</div>-->
+                    {{/if}}
                 {{/each}}
             </ul>
-        </div>
-    
-    </main>
+            <br>
+        </main>
+    </div>
+
+    <div id='user-list'>
+        <main class='to-center'>
+                <button id='add-subject'>Add Subject</button>
+            <br>
+            <ul id='user-subject-list'>
+                {{#each subjects}}
+                <!--Only display user subjects-->
+                    {{#if this.user}}
+                         <!--  <div class="subject-box">-->
+                            <a class="sub-link" href="/{{this.slug}}"><div class="subject-box"><li>{{this.name}}</li></div></a>
+                        <!--</div>-->
+                    {{/if}}
+                {{/each}}
+            </ul>
+            <br>
+        </main>
+         
+    </div>
+
+   
 </div>
+
+
 
 <div class="modal">
     <div class="modal-content">

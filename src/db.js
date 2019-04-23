@@ -11,32 +11,29 @@ const Fact = new mongoose.Schema({
 
 const Subject = new mongoose.Schema({
     name: String,
-    facts: [Fact]
+    facts: [Fact],
+    site: Boolean,  //true if its a subject created by site - for handlebars
+    user: Boolean   //true if its a site created by a user - for handlebars
+
 });
 
+//slug for subjects
+Subject.plugin(URLSlugs('name'));
+
+/*
 const character = new mongoose.Schema({
     name: String, 
     state: String
 });
-
-const User = new mongoose.Schema({
-    Name: String,
-    username: String, 
-    password: String, 
-    subjects: [Subject]
-});
+*/
 
 // "register" it so that mongoose knows about it
 mongoose.model('Fact', Fact);
 
 mongoose.model('Subject', Subject);
 
-//slug for subjects
-Subject.plugin(URLSlugs('name'));
+//mongoose.model('Character', character);
 
-mongoose.model('Character', character);
-
-mongoose.model("User", User);
 
 // is the environment variable, NODE_ENV, set to PRODUCTION? 
 let dbconf;

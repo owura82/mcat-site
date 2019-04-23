@@ -1,18 +1,30 @@
 <div class='top-bar'> 
-    <button id='add-fact' >Add Fact</button>
+    <a class='back-subj' href="/subjects"><button class="btn-primary move-down">Back to Subjects</button></a>
+    <a class='back-subj' href="/"><button class="btn-primary move-down">Home</button></a>
 </div>
 
 <div class='main-section'>
-    <main class='to-center'>
+    <div class="to-center">
+        <h4> {{subjectname}} Facts </h4>
+        <button id='add-fact' class="to-center">Add Fact</button>
+     </div>
+
+    <main>
         <div class="fact-list">
             <ul id="fact-list">
                 {{#each facts}}
-                <li>{{this.info}}</li>
+                    <div class="fact-box">
+                        <span>
+                            <li>{{this.info}}</li>
+                        </span>
+                    </div>
                 {{/each}}
             </ul>
+            <br>
         </div>
     
     </main>
+    
 </div>
 
 <div class="modal">
@@ -22,6 +34,7 @@
         <span>
             <input type="button" id="create-fact" value="Add">&nbsp;&nbsp;&nbsp;
             <input type="button" id="cancel" value="Cancel">
+            <input type="hidden" id="subject" value='{{subject}}'>
         </span>
     </div>
 </div>
