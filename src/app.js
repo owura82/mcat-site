@@ -37,6 +37,39 @@ const publicPath = path.resolve(__dirname, "public");
 app.use(express.static(publicPath));
 
 
+//class that contains functions to manipulate data 
+class manipulate{
+
+
+    
+    sortSubjects(){
+    //sort subjects in alphabetical order
+
+    }
+
+
+    sortFacts(){
+    //sort facts accoridng to amount of votes
+
+    }
+
+    filterFacts(){
+    //filter facts based on some threshold 
+    //use map.filter
+
+    }
+
+
+    
+
+
+
+}
+
+
+
+
+
 
 app.get('/subjects', function(eq, res){
 

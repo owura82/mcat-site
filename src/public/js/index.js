@@ -64,12 +64,27 @@ function addFact(evt){
             //add new fact to page 
             const response = JSON.parse(req.responseText);
 
+            
+
+            const div = document.createElement('div');
+            div.className = 'fact-box fact-score';
+
+
             const li = document.createElement('li');
             li.textContent = response.info;
 
-            const div = document.createElement('div');
-            div.className = 'fact-box';
-            div.appendChild(li);
+            const lidiv = document.createElement('div');
+            lidiv.className = 'fact-info';
+            lidiv.appendChild(li);
+
+            const scorediv = document.createElement('div');
+            scorediv.className = 'score';
+
+            //add score to the score div
+            scorediv.textContent = "Score";
+            
+            div.appendChild(lidiv);
+            div.appendChild(scorediv);
 
             $('#fact-list').append(div);
 
@@ -94,6 +109,7 @@ function addFact(evt){
 
 function cancelClicked(evt){
     document.querySelector('.modal').style.display = 'none';
+    document.querySelector('.modal2').style.display = 'none';
         
 }
 
@@ -113,6 +129,13 @@ function showModal(evt){
     }
 
     document.querySelector('#cancel').addEventListener('click', cancelClicked);
+}
+
+function showSecondModal(evt){
+    console.log("show second modal");
+    document.querySelector('.modal2').style.display = 'unset';
+
+    document.querySelector('#cancel2').addEventListener('click', cancelClicked);
 }
 
 
@@ -139,6 +162,11 @@ function main(){
     if(document.querySelector('#add-fact')){
         const button = document.querySelector('#add-fact');
         button.addEventListener('click', showModal);
+
+       const btns = $('.fact-score');
+       for(let i=0; i<btns.length; i++){
+           btns[i].addEventListener('click', showSecondModal);
+       }
     }
 
 
