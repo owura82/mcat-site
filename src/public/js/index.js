@@ -81,10 +81,12 @@ function addFact(evt){
             scorediv.className = 'score';
 
             //add score to the score div
-            scorediv.textContent = "Score";
+            scorediv.textContent = response.score;
             
             div.appendChild(lidiv);
             div.appendChild(scorediv);
+
+            div.addEventListener('click', showSecondModal);
 
             $('#fact-list').append(div);
 
@@ -110,6 +112,7 @@ function addFact(evt){
 function cancelClicked(evt){
     document.querySelector('.modal').style.display = 'none';
     document.querySelector('.modal2').style.display = 'none';
+    document.querySelector('.modal3').style.display = 'none';
         
 }
 
@@ -132,10 +135,40 @@ function showModal(evt){
 }
 
 function showSecondModal(evt){
-    console.log("show second modal");
     document.querySelector('.modal2').style.display = 'unset';
 
     document.querySelector('#cancel2').addEventListener('click', cancelClicked);
+
+    document.querySelector('#clicked-fact').value = this.querySelector('.info-text').textContent;
+
+    //add eventlistener to add score
+    $('#add-score').click(function(){
+        cancelClicked();
+        const num = $('#new-fact-score').val();
+        const fact = $('#clicked-fact').val();
+        const subject = $('#subject-name').val();
+
+        $.post('/updatescore',{score: num, fact:fact, subject:subject}, function(){
+            
+        });
+    });
+
+}
+
+function showFilterModal(evt){
+    document.querySelector('.modal3').style.display = 'unset';
+
+    document.querySelector('#cancel3').addEventListener('click', cancelClicked);
+
+    //add event listener to filter
+    
+    $('#filter-btn').click(function(){
+        cancelClicked();
+        const num = $('#filter-value').val();
+        $.post('/facts',{number:num});
+    });
+
+    
 }
 
 
@@ -167,6 +200,9 @@ function main(){
        for(let i=0; i<btns.length; i++){
            btns[i].addEventListener('click', showSecondModal);
        }
+
+       //add event listener for filter
+       $('#filter-button').click(showFilterModal);
     }
 
 

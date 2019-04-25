@@ -36,39 +36,88 @@ const publicPath = path.resolve(__dirname, "public");
 //static file miiddleware
 app.use(express.static(publicPath));
 
+//functions for sorting 
 
-//class that contains functions to manipulate data 
-class manipulate{
+function mergeSort (arr) {
+    if (arr.length === 1) {
+      // return once we hit an array with a single item
+      return arr
+    }
+  
+    const middle = Math.floor(arr.length / 2) // get the middle item of the array rounded down
+    const left = arr.slice(0, middle) // items on the left side
+    const right = arr.slice(middle) // items on the right side
+  
+    return merge(
+      mergeSort(left),
+      mergeSort(right)
+    )
+  }
+  
+  // compare the arrays item by item and return the concatenated result
+  function merge (left, right) {
+    let result = [];
+    let indexLeft = 0;
+    let indexRight = 0;
+  
+    while (indexLeft < left.length && indexRight < right.length) {
+      if (left[indexLeft].score < right[indexRight].score) {
+        result.push(left[indexLeft]);
+        indexLeft++;
+      } else {
+        result.push(right[indexRight]);
+        indexRight++;
+      }
+    }
+  
+    return result.concat(left.slice(indexLeft)).concat(right.slice(indexRight));
+  }
 
 
+function insertionSort(arr){
+    for (let i = 0; i < arr.length; i++) {
+        let value = arr[i];
+        // store the current item value so it can be placed right
+        for (let j = i - 1; j > -1 && arr[j].score > value.score; j--) {
+          // loop through the items in the sorted array (the items from the current to the beginning)
+          // copy each item to the next one
+          arr[j + 1] = arr[j];
+        }
+        // the last item we've reached should now hold the value of the currently sorted item
+        arr[j + 1] = value;
+      }
     
-    sortSubjects(){
-    //sort subjects in alphabetical order
-
-    }
-
-
-    sortFacts(){
-    //sort facts accoridng to amount of votes
-
-    }
-
-    filterFacts(){
-    //filter facts based on some threshold 
-    //use map.filter
-
-    }
-
-
-    
-
-
+      return arr;
 
 }
 
 
+//class that contains functions to manipulate data 
+class Manipulate{
+    
+       sortFacts(arr, sorter){
+        //sort facts accoridng to amount of votes
+        //use the pased in sorting function to sort facts (HOF)
+        const sorted = sorter(arr);
+        return sorted;
 
+    }
 
+    filterFacts(arr, limit){
+    //filter facts based on some threshold 
+    //use map.filter
+    const filtered = arr.filter((ele) =>{
+        if(ele.score>=limit){
+            return ele;
+        }
+    });
+
+    return filtered;
+    }
+
+}
+
+const manipulator = new Manipulate();
 
 
 app.get('/subjects', function(eq, res){
@@ -92,7 +141,28 @@ app.get('/facts', function(req, res){
             return;
         }
 
-        res.render('facts', {facts:found});
+        let sorter;
+        (found.length >=10) ? sorter = mergeSort : sorter = insertionSort;
+
+        const sorted = manipulator.sortFacts(found, sorter);
+
+        res.render('facts', {facts:sorted});
+    });
+
+});
+
+app.post('/facts', function(req, res){
+    
+    Fact.find(function(err, found){
+        if(err){
+            console.log("Could not find subjects");
+            return;
+        }
+
+        const lim = sanitize(req.body.number);
+        const filtered = manipulator.filterFacts(found, lim);
+
+        res.render('facts', {facts:filtered});
     });
 
 });
@@ -115,7 +185,8 @@ app.post('/addfact',function(req, res){
     });
 
     const newFact = new Fact({
-        info: fact
+        info: fact,
+        score:0
     });
 
     //need to add the new fact to its associated subject
@@ -172,7 +243,7 @@ app.get('/:subj', function(req, res){
     //display facts for subjects
     const cleanSlug = sanitize(req.params.subj);
     Subject.find({slug: cleanSlug}, function(err, found){
-        if(err){
+        if(err || found.length===0){
             console.log('could not find subject using slug ');
             return;
         }
@@ -189,6 +260,8 @@ app.get('/:subj', function(req, res){
 
 
 });
+
+
 
 
 

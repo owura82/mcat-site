@@ -4,11 +4,11 @@
 </div>
 
 <div class='main-section'>
-    <div class="to-center">
-        <h4> {{subjectname}} Facts </h4>
+    <div class="to-center heading">
+        <h4 id="subject-name"> {{subjectname}} Facts </h4>
         <button id='add-fact' class="to-center">Add Fact</button>
-        <div>
-            
+        <div id="filter-button">
+             <button class="btn-primary move-down">Filter</button>
         </div>
      </div>
 
@@ -17,8 +17,9 @@
             <ul id="fact-list">
                 {{#each facts}}
                     <div class="fact-box fact-score">
-                        <div class="fact-info"><li>{{this.info}}</li></div>
-                        <div class='score'>10</div>
+                        <div class="fact-info"><li class='info-text'>{{this.info}}</li></div>
+                        <div class='score'>{{this.score}}</div>
+                        <input type="hidden" id="clicked-fact" value="">
                     </div>
                 {{/each}}
             </ul>
@@ -44,16 +45,30 @@
 <div class="modal2">
     <div class="modal2-content">
         <h4>Score this Fact</h4>
-        <h6>Based on its importance</h6>
-        <select class="form-control" id="">
+        <h6>Based on its importance. The score you provide will be added to its current score.</h6>
+        <span>1 - Worth knowing &nbsp;&nbsp;2 - You really should remember this &nbsp;&nbsp;3 - Must remember at all cost!</span>
+        <select class="form-control" id="new-fact-score">
             <option>1</option>
             <option>2</option>
             <option>3</option>
         </select>
         <br>
         <span>
-            <input type="submit" value="Add Score">
+            <input type="submit" id='add-score' value="Add Score">
             <input type="button" id="cancel2" value="Cancel">
+        </span>
+    </div>
+</div>
+
+<div class="modal3">
+    <div class="modal3-content">
+        <h4>Filter facts</h4>
+        <pre>Show facts that have a score greater than:</pre>
+        <input type="number" id="filter-value">
+        <br>
+        <span>
+            <input type="submit" id='filter-btn' value="Filter">
+            <input type="button" id="cancel3" value="Cancel">
         </span>
     </div>
 </div>
