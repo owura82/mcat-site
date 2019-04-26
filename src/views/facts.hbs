@@ -10,6 +10,9 @@
         <div id="filter-button">
              <button class="btn-primary move-down">Filter</button>
         </div>
+        <div id='remove-filters'>
+             <a href="/{{subject}}"><button class="btn-primary move-down">Remove Filters</button></a>
+        </div>
      </div>
 
     <main>
@@ -19,10 +22,10 @@
                     <div class="fact-box fact-score">
                         <div class="fact-info"><li class='info-text'>{{this.info}}</li></div>
                         <div class='score' id={{this.id}}>{{this.score}}</div>
-                        <input type="hidden" id="clicked-fact" value="">
                     </div>
                 {{/each}}
             </ul>
+            <input type="hidden" id="clicked-fact" value="">
             <br>
         </div>
     
@@ -73,6 +76,5 @@
     </div>
 </div>
 
-<div class='other-links'>
-    *Insert other medical school and MCAT related links*
+<div class='other'>
 </div>

@@ -151,7 +151,7 @@ app.get('/facts', function(req, res){
     });
 
 });
-*/
+
 app.post('/facts', function(req, res){
     //url posted to when user makes request to filter facts
     Subject.find({name:req.body.subject}, function(err, found){
@@ -173,7 +173,7 @@ app.post('/facts', function(req, res){
     });
 
 });
-
+*/
 
 app.post('/addfact',function(req, res){
     //add a new fact

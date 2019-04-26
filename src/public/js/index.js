@@ -27,8 +27,6 @@ function addSubject(evt){
 
             $('#user-subject-list').append(toadd);
             
-
-
         }
 
         else{
@@ -68,7 +66,6 @@ function addFact(evt){
 
             const div = document.createElement('div');
             div.className = 'fact-box fact-score';
-            div.id = response.id;
 
 
             const li = document.createElement('li');
@@ -81,6 +78,7 @@ function addFact(evt){
 
             const scorediv = document.createElement('div');
             scorediv.className = 'score';
+            scorediv.id = response['_id'];
 
             //add score to the score div
             scorediv.textContent = response.score;
@@ -195,9 +193,22 @@ function main(){
        //add event listener to filter
        $('#filter-btn').click(function(){
         cancelClicked();
-        const num = $('#filter-value').val();
+        const num = parseInt($('#filter-value').val());
         const subject = document.querySelector('#subject-name').textContent;
-        $.post('/facts',{number:num, subject: subject});
+       // $.post('/facts',{number:num, subject: subject});
+
+        const facts = document.querySelector('#fact-list').childNodes;
+        console.log(facts);
+
+        for(let i=0; i<facts.length; i++){
+            if(facts[i].nodeType !== 1){continue;}
+            const check = parseInt(facts[i].childNodes[3].textContent);
+            if (check < num){
+                facts[i].style.display = 'none';
+            }
+        }
+
+
     });
 
      //add eventlistener to add score
@@ -206,11 +217,13 @@ function main(){
         const num = $('#new-fact-score').val();
         const fact = $('#clicked-fact').val();
         const subject = document.querySelector('#subject-name').textContent;
+
+        console.log('num is ', num, ' fact is ', fact, ' subject ',subject);
         $.post('/updatescore',{score: num, fact:fact, subject:subject}, function(data){
-            console.log(data);
-            console.log(data.update['_id']);
             const id = '#'+data.update['_id'];
            //document.querySelector(id).querySelector('.score').textContent = data.update.score;
+           console.log(data.update['_id']);
+           console.log($(id));
            $(id).text(data.update.score);
         });
     });
