@@ -78,7 +78,8 @@ function insertionSort(arr){
     for (let i = 0; i < arr.length; i++) {
         let value = arr[i];
         // store the current item value so it can be placed right
-        for (let j = i - 1; j > -1 && arr[j].score > value.score; j--) {
+        let j;
+        for (j = (i - 1); j > -1 && arr[j].score > value.score; j--) {
           // loop through the items in the sorted array (the items from the current to the beginning)
           // copy each item to the next one
           arr[j + 1] = arr[j];
@@ -132,7 +133,7 @@ app.get('/subjects', function(eq, res){
     });
 
 });
-
+/*
 app.get('/facts', function(req, res){
  
     Fact.find(function(err, found){
@@ -142,7 +143,7 @@ app.get('/facts', function(req, res){
         }
 
         let sorter;
-        (found.length >=10) ? sorter = mergeSort : sorter = insertionSort;
+        (found.length >10) ? sorter = mergeSort : sorter = insertionSort;
 
         const sorted = manipulator.sortFacts(found, sorter);
 
@@ -150,19 +151,25 @@ app.get('/facts', function(req, res){
     });
 
 });
-
+*/
 app.post('/facts', function(req, res){
-    
-    Fact.find(function(err, found){
+    //url posted to when user makes request to filter facts
+    Subject.find({name:req.body.subject}, function(err, found){
         if(err){
             console.log("Could not find subjects");
             return;
         }
 
+        if(found.length === 0){
+        console.log('could not find subject in order to filter facts.')
+        return;
+        }
+        
         const lim = sanitize(req.body.number);
-        const filtered = manipulator.filterFacts(found, lim);
+        const filtered = manipulator.filterFacts(found[0].facts, lim);
+        console.log('unfiltered array is \n', found[0].facts, "\n and filtered array is \n", filtered);
 
-        res.render('facts', {facts:filtered});
+        res.render('facts', {facts:filtered, subject:found[0].slug, subjectname:found[0].name});
     });
 
 });
@@ -248,9 +255,13 @@ app.get('/:subj', function(req, res){
             return;
         }
 
-        const facts = found[0].facts;
+        let sorter;
+        (found[0].facts.length >10) ? sorter = mergeSort : sorter = insertionSort;
+
+        let sorted = manipulator.sortFacts(found[0].facts, sorter);
+        sorted = sorted.reverse();
         const barsObject = {
-            facts: facts,
+            facts: sorted,
             subject: cleanSlug,
             subjectname: found[0].name
         }
@@ -261,6 +272,40 @@ app.get('/:subj', function(req, res){
 
 });
 
+
+app.post('/updatescore', function(req, res){
+    //sanitize input 
+    const score = JSON.parse(sanitize(req.body.score));
+    
+    Subject.findOne({name:req.body.subject}, function(err, subject) {
+        if(err){
+            console.log('could not find subject to update fact score');
+            return;
+        }
+
+        let toreturn;
+        for (let i = 0; i < subject.facts.length; i++) {
+            
+            if(subject.facts[i].info === req.body.fact){
+
+                subject.facts[i].score += score;
+                toreturn = subject.facts[i];
+                break;
+            }
+        }
+
+        subject.markModified('facts');
+        subject.save(function(err, subject) {
+            if(err){
+                console.log('could not save updated fact', err);
+                return;
+            }
+
+            res.send({update: toreturn})
+        });
+    });
+
+});
 
 
 

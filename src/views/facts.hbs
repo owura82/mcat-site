@@ -5,7 +5,7 @@
 
 <div class='main-section'>
     <div class="to-center heading">
-        <h4 id="subject-name"> {{subjectname}} Facts </h4>
+       <h4><span id="subject-name">{{subjectname}}</span> Facts </h4>
         <button id='add-fact' class="to-center">Add Fact</button>
         <div id="filter-button">
              <button class="btn-primary move-down">Filter</button>
@@ -18,7 +18,7 @@
                 {{#each facts}}
                     <div class="fact-box fact-score">
                         <div class="fact-info"><li class='info-text'>{{this.info}}</li></div>
-                        <div class='score'>{{this.score}}</div>
+                        <div class='score' id={{this.id}}>{{this.score}}</div>
                         <input type="hidden" id="clicked-fact" value="">
                     </div>
                 {{/each}}
@@ -67,7 +67,7 @@
         <input type="number" id="filter-value">
         <br>
         <span>
-            <input type="submit" id='filter-btn' value="Filter">
+            <input type="button" id='filter-btn' value="Filter">
             <input type="button" id="cancel3" value="Cancel">
         </span>
     </div>

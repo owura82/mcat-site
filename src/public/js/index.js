@@ -68,10 +68,12 @@ function addFact(evt){
 
             const div = document.createElement('div');
             div.className = 'fact-box fact-score';
+            div.id = response.id;
 
 
             const li = document.createElement('li');
             li.textContent = response.info;
+            li.className = 'info-text';
 
             const lidiv = document.createElement('div');
             lidiv.className = 'fact-info';
@@ -82,9 +84,16 @@ function addFact(evt){
 
             //add score to the score div
             scorediv.textContent = response.score;
+
+            //create new hidden input and hide it 
+            const hidden = document.createElement('input');
+            hidden.type = 'hidden';
+            hidden.id = 'clicked-fact';
+            hidden.value = '';
             
             div.appendChild(lidiv);
             div.appendChild(scorediv);
+            div.appendChild(hidden);
 
             div.addEventListener('click', showSecondModal);
 
@@ -141,34 +150,12 @@ function showSecondModal(evt){
 
     document.querySelector('#clicked-fact').value = this.querySelector('.info-text').textContent;
 
-    //add eventlistener to add score
-    $('#add-score').click(function(){
-        cancelClicked();
-        const num = $('#new-fact-score').val();
-        const fact = $('#clicked-fact').val();
-        const subject = $('#subject-name').val();
-
-        $.post('/updatescore',{score: num, fact:fact, subject:subject}, function(){
-            
-        });
-    });
-
 }
 
 function showFilterModal(evt){
     document.querySelector('.modal3').style.display = 'unset';
 
     document.querySelector('#cancel3').addEventListener('click', cancelClicked);
-
-    //add event listener to filter
-    
-    $('#filter-btn').click(function(){
-        cancelClicked();
-        const num = $('#filter-value').val();
-        $.post('/facts',{number:num});
-    });
-
-    
 }
 
 
@@ -203,6 +190,31 @@ function main(){
 
        //add event listener for filter
        $('#filter-button').click(showFilterModal);
+
+
+       //add event listener to filter
+       $('#filter-btn').click(function(){
+        cancelClicked();
+        const num = $('#filter-value').val();
+        const subject = document.querySelector('#subject-name').textContent;
+        $.post('/facts',{number:num, subject: subject});
+    });
+
+     //add eventlistener to add score
+     $('#add-score').click(function(){
+        cancelClicked();
+        const num = $('#new-fact-score').val();
+        const fact = $('#clicked-fact').val();
+        const subject = document.querySelector('#subject-name').textContent;
+        $.post('/updatescore',{score: num, fact:fact, subject:subject}, function(data){
+            console.log(data);
+            console.log(data.update['_id']);
+            const id = '#'+data.update['_id'];
+           //document.querySelector(id).querySelector('.score').textContent = data.update.score;
+           $(id).text(data.update.score);
+        });
+    });
+
     }
 
 
