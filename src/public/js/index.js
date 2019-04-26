@@ -197,9 +197,10 @@ function main(){
         const subject = document.querySelector('#subject-name').textContent;
        // $.post('/facts',{number:num, subject: subject});
 
-        const facts = document.querySelector('#fact-list').childNodes;
-        console.log(facts);
+        let facts = document.querySelector('#fact-list').childNodes;
+        facts = Array.from(facts);
 
+        /*
         for(let i=0; i<facts.length; i++){
             if(facts[i].nodeType !== 1){continue;}
             const check = parseInt(facts[i].childNodes[3].textContent);
@@ -207,6 +208,19 @@ function main(){
                 facts[i].style.display = 'none';
             }
         }
+        */
+
+        const filtering = facts.filter(function(ele){
+            if(ele.nodeType === 1){
+                const check = parseInt(ele.childNodes[3].textContent);
+                if (check < num){
+                    ele.style.display = 'none';
+                }
+                else{
+                    return ele;
+                }
+            }
+        });
 
 
     });
@@ -232,7 +246,5 @@ function main(){
 
 
 }
-
-//document.addEventListener("DOMContentLoaded", main);
 
 $(document).ready(main);
