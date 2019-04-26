@@ -92,8 +92,10 @@ Sitemap for MCAT study site
 
 ## Annotations / References Used
 
-No references yet
-[jQuery](https://api.jquery.com/)
-[Bootstrap](https://www.w3schools.com/bootstrap/default.asp)
-[Code for mergesort](https://hackernoon.com/programming-with-js-merge-sort-deb677b777c0)
+[jQuery](https://api.jquery.com/)  
+
+[Bootstrap](https://www.w3schools.com/bootstrap/default.asp)  
+
+[Code for mergesort](https://hackernoon.com/programming-with-js-merge-sort-deb677b777c0)  
+
 [Code for insertion sort](https://hackernoon.com/programming-with-js-insertion-sort-1316df8354f5)
