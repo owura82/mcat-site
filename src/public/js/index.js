@@ -112,7 +112,10 @@ function addFact(evt){
 
 function cancelClicked(evt){
     document.querySelector('.modal').style.display = 'none';
+    document.querySelector('#new-fact').value = '';
+
     document.querySelector('.modal2').style.display = 'none';
+    
     document.querySelector('.modal3').style.display = 'none';
         
 }
