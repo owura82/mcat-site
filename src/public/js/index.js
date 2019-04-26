@@ -83,15 +83,9 @@ function addFact(evt){
             //add score to the score div
             scorediv.textContent = response.score;
 
-            //create new hidden input and hide it 
-            const hidden = document.createElement('input');
-            hidden.type = 'hidden';
-            hidden.id = 'clicked-fact';
-            hidden.value = '';
             
             div.appendChild(lidiv);
             div.appendChild(scorediv);
-            div.appendChild(hidden);
 
             div.addEventListener('click', showSecondModal);
 
@@ -202,7 +196,10 @@ function main(){
 
         const filtering = facts.filter(function(ele){
             if(ele.nodeType === 1){
-                const check = parseInt(ele.childNodes[3].textContent);
+                console.log('ele is ', ele);
+                console.log('ele child nodes are ', ele.childNodes);
+
+                const check = parseInt(ele.querySelector('.score').textContent);
                 if (check < num){
                     ele.style.display = 'none';
                 }
