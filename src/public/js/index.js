@@ -200,16 +200,6 @@ function main(){
         let facts = document.querySelector('#fact-list').childNodes;
         facts = Array.from(facts);
 
-        /*
-        for(let i=0; i<facts.length; i++){
-            if(facts[i].nodeType !== 1){continue;}
-            const check = parseInt(facts[i].childNodes[3].textContent);
-            if (check < num){
-                facts[i].style.display = 'none';
-            }
-        }
-        */
-
         const filtering = facts.filter(function(ele){
             if(ele.nodeType === 1){
                 const check = parseInt(ele.childNodes[3].textContent);
